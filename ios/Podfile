@@ -1,14 +1,22 @@
-platform :ios, '11.0'
+platform :ios, '12.0'
 
-target 'kraken_ble_control' do
+target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  # Add any pod dependencies below if needed
+  # e.g., pod 'SomeLibrary'
+
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    flutter_additional_ios_build_settings(target)
+    target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+    end
   end
 end
+
+# This Podfile is configured for a Flutter project.
+# Make sure to run `pod install` after modifying this file.
+# For more information, visit https://flutter.dev/docs/development/ios/projects#podfile
