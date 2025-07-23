@@ -1,22 +1,21 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.cocoapods.org/'
+
 platform :ios, '12.0'
 
+use_frameworks!
+use_modular_headers!
+
 target 'Runner' do
-  use_frameworks!
-  use_modular_headers!
-
-  # Add any pod dependencies below if needed
-  # e.g., pod 'SomeLibrary'
-
+  pod 'Flutter'
+  pod 'Reachability'
+  # Add any other pods manually here
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] ||= '12.0'
     end
   end
 end
-
-# This Podfile is configured for a Flutter project.
-# Make sure to run `pod install` after modifying this file.
-# For more information, visit https://flutter.dev/docs/development/ios/projects#podfile
